@@ -1,0 +1,206 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt]{article}
+%\usepackage{epsfig,harvard,psfrag}
+%\documentclass[letterpaper, 12pt]{article}
+\usepackage{rotating,amsmath, amssymb, amsthm, multirow}
+\usepackage{amsfonts, verbatim}
+\usepackage{epsfig, psfrag, harvard}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[left=3.23cm,top=2.5cm,right=3.23cm,bottom=2.6cm]{geometry}
+\citationmode{abbr}
+\pagestyle{plain}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\usepackage{amsmath,amssymb}
+
+
+%\citationmode{abbr}
+\def\half{\frac{1}{2}}
+\def\sign {{\rm sign}}
+\def\Poisson {{\rm Poisson}}
+\def\max {{\rm max}}
+\def\trace {{\rm trace}}
+\def\rank {{\rm rank}}
+\def\minimize {{\rm minimize}}
+\def\MR {{\rm MR}}
+\def\det {{\rm det}}
+\def\FDR {{\rm FDR}}
+\def \s.t. {{\rm \;subject \;to \;}}
+\newcommand{\bh}{\widehat}
+\def\var {{\rm var}}  
+\def\bfx {{\bf x}}                                                                   
+\def\bfd {{\bf d}} 
+\def\bfc {{\bf c}}                                                                   
+\def\bfb {{\bf b}}                                                                   
+\def\zero {{\bf 0}}                                                                  
+\def\bfP {{\bf P}}                                                                   
+\def\bfU {{\bf U}}                                                                   
+\def\bfV {{\bf V}}                                                                   
+\def\bfLambda {{\bf \Lambda}}                                                        
+\def\bft {{\bf t}}                                                                   
+\def\bfbeta {{\boldsymbol\beta}}                                                     
+\def\bfeta {{\boldsymbol\eta}}                                                       
+\def\bfalpha {{\boldsymbol\alpha}}                                                   
+\def\bftheta {{\boldsymbol\theta}}                                                   
+\def\bfeps {{\boldsymbol\epsilon}}                                                   
+\def\bfa {{\bf a}}                                                                   
+\def\bfz {{\bf z}}                                                                   
+\def\bfu {{\bf u}}                                                                   
+\def\bfy {{\bf y}}                                                                   
+\def\bfY {{\bf Y}}                                                                   
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfE {{\bf E}}                                                                   
+\def\bfJ {{\bf J}}                                                                   
+\def\bfG {{\bf G}}                                                                   
+\def\bfF {{\bf F}}                                                                   
+\def\bfK {{\bf K}}                                                                   
+\def\E {{\rm E}}                                                                     
+\def\Var {{\rm Var}}                                                                 
+\def\Cov {{\rm Cov}}                                                                 
+\def\Cor {{\rm Cor}}                                                                 
+\def\bfX {{\bf X}}                                                                   
+\def\bfD {{\bf D}}                                                                   
+\def\bfM {{\bf M}}                                                                   
+\def\bfzero {{\bf 0}}                                                                
+\def\bfB{{\bf B}}                                                                    
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfSigma {{\bf \Sigma}}                                                          
+\def\bfC {{\bf C}}                                                                   
+\def\bfT {{\bf T}} 
+\def\bfV {{\bf V}}                                                                   
+\def\bfI {{\bf I}}                                                                   
+\def\bfA {{\bf A}}      
+
+
+\begin{document}
+
+
+\noindent{\bf BIOST 546}\\
+{\bf WINTER QUARTER 2020}\\
+
+
+\vspace{5mm}
+
+\begin{center}
+{\bf Homework \# 2}\\
+{\bf Due Via Online Submission to Canvas: Tues, Feb 11 at 12 PM (Noon) }
+\end{center}
+\vspace{10mm}
+
+\noindent \emph{Instructions:}\\
+
+ You may discuss the homework problems in small groups, but you must write up the final solutions and code yourself. 
+Please turn in your code for the problems that involve coding.  However, code without written answers will receive no credit. To receive credit, you must explain your answers and show your work. All plots should be appropriately labeled and legible, with axis labels, legends, etc., as needed. \\
+
+\emph{Please remember --- the easier you make it for the TA to find your answer, the easier it will be for him to give you credit for the problem!} 
+
+
+\vspace{10mm}
+
+\begin{enumerate}
+
+
+\item  Consider classification with $K$ classes and one feature, i.e. $p=1$. 
+
+In lecture, we went through a detailed argument to see that the discriminant function for linear discriminant analysis (which assumes that an observation in the $k$th class is drawn from a $N(\mu_k, \sigma^2)$ distribution) is of the form given in Equation 4.13 of the textbook. %
+
+\begin{enumerate}
+
+\item Now consider quadratic discriminant analysis, which assumes that an observation in the $k$th class is drawn from a $N(\mu_k, \sigma_k^2)$ distribution. Using an argument similar to the one in class, derive the discriminant function for quadratic discriminant analysis. It should be similar, but not identical, to Equation 4.13.  It should also look similar to Equation 4.23 (but not identical ---  Equation 4.23 is a little bit more complicated since it has $p>1$). 
+
+\item Comment on the difference between Equation 4.13 and your answer in (a). Explain how we can see that the discriminant functions are for linear discriminant analysis and quadratic discriminant analysis are  \emph{linear} and \emph{quadratic}, respectively. 
+
+
+\end{enumerate}
+
+
+\item Choose a  data set with $p=2$ features $X_1$ and $X_2$,  a qualitative response  $Y$ with $K = 3$ classes, and at least 15 observations per class. (If you have a data set with more than two features or more than three classes, then feel free to just select a subset of the features and classes so that you can use the data for this problem.) We are going to predict $Y$ using $X_1$ and $X_2$. 
+
+
+
+\begin{enumerate}
+\item Briefly describe the data. Where did you get it? Describe the $K$ classes and the $p$ features. Explain the classification task in words (e.g. a sentence along the lines of ``I will use the expression levels of genes ABC and DEF to predict whether a patient belongs to class G, H, or I.")
+\item Fit an LDA model to the data. Make a plot with $X_1$ and $X_2$ on the horizontal and vertical axes, and with the observations displayed and colored according to their true class labels. On the plot, indicate which observations are incorrectly classified. 
+\item Fit a QDA model to the data. Make a plot with $X_1$ and $X_2$ on the horizontal and vertical axes, and with the observations displayed and colored according to their true class labels. On the plot, indicate which observations are incorrectly classified. 
+\item Fit a logistic regression model to the data. Make a plot with $X_1$ and $X_2$ on the horizontal and vertical axes, and with the observations displayed and colored according to their true class labels. On the plot, indicate which observations are incorrectly classified. 
+\item Out of the three models, which one gave you the smallest training error? How does this relate to the bias-variance trade-off? 
+\item Which of these three models do you expect will give you the smallest test error? Explain your answer.  How does this relate to the bias-variance trade-off? 
+\end{enumerate}
+
+
+  \item Suppose we have a quantitative response $Y$, and two quantitative features $X_1$ and $X_2$.   
+  Let $RSS_1$ denote the residual sum of squares that results from fitting the model
+   \begin{equation}
+   Y = \beta_0 + \beta_1 X_1 + \epsilon
+   \label{eq:1}
+   \end{equation}
+    using least squares. 
+   Let $RSS_{12}$ denote the residual sum of squares that results from fitting the model
+   \begin{equation}
+   Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 +  \epsilon
+   \label{eq:2}
+   \end{equation}
+    using least squares. 
+%   \begin{enumerate}
+   %\item
+   
+   
+       Perform the following procedure a whole lot of times (you will need to write a for loop to do this):
+   \begin{itemize}
+   \item Simulate $Y$, $X_1$, and $X_2$ with $n=200$. You can generate each element of $X_1$ and $X_2$ independently from a $N(0,1)$ distribution, and you can generate $Y$ according to $Y = 3 + 2X_1 - X_2 + \epsilon$, where the elements of $\epsilon$ are independent draws from a $N(0,1)$ distribution. 
+   \item Fit the models \eqref{eq:1} and \eqref{eq:2} using least squares.
+   \item  Compare the values of $RSS_{12}$ and $RSS_1$. 
+   \item Compare the $R^2$ value for \eqref{eq:1} to the $R^2$ value for \eqref{eq:2}. 
+   \end{itemize}
+  Describe your findings. Which of the two models is more flexible? Which model has smaller training RSS, and which model has larger training $R^2$? How would you expect the two models to perform on test data?  How do your findings relate to the bias-variance trade-off?
+    
+  \noindent{\bf ***Extra Credit:***} Prove that $RSS_{12} \leq RSS_1$. 
+
+
+\item This question involves the use of multiple linear regression on the
+\verb=Auto= data set, which is available as part of the \verb=ISLR= library.
+\begin{enumerate}
+
+\item Use the \verb=lm()= function to perform a multiple linear regression
+with \verb=mpg= as the response and all other variables except \verb=name= as
+the predictors. Use the \verb=summary()= function to print the results.
+Comment on the output. For instance:
+\begin{enumerate}
+\item Is there a relationship between the predictors and the response?
+\item Which predictors appear to have a statistically significant
+relationship to the response?
+\item Provide an interpretation for the coefficient associated with the variable \verb=year=.
+\end{enumerate}
+Make sure that you treat the qualitative variable \verb=origin= appropriately.
+\item Try out some models to predict \verb=mpg= using {\bf functions of} the variable \verb=horsepower=. Comment on the best model you obtain. Make a plot with \verb=horsepower= on the $x$-axis and \verb=mpg= on the $y$-axis that displays both the observations and the fitted function
+ (i.e. $\hat{f}$(\verb=horsepower=)). 
+\item Now fit a model to predict \verb=mpg= using \verb=horsepower=, \verb=origin=, and an interaction between \verb=horsepower= and \verb=origin=. Make sure to treat the qualitative variable \verb=origin= appropriately. Comment on your results. Provide a careful interpretation of each regression coefficient.
+\end{enumerate}
+
+\item Consider fitting a model to predict credit card \verb=balance= using \verb=income= and \verb=student=, where \verb=student= is a qualitative variable that takes on one of three values: \verb=student=$\in \{$\verb=graduate=, \verb=undergraduate=, \verb=not student=$\}$. 
+\begin{enumerate}
+\item Encode the student variable using two dummy variables, one of which equals 1 if \verb+student=graduate+ (and 0 otherwise), and one of which equals 1 if \verb+student=undergraduate+ (and 0 otherwise).  Write out an expression for a linear model to predict \verb=balance= using \verb=income= and \verb=student=, using this coding of the dummy variables. Interpret the coefficients in this linear model. 
+\item Now encode the student variable using two dummy variables, one of which equals 1 if \verb+student=not student+ (and 0 otherwise), and one of which equals 1 if \verb+student=graduate+ (and 0 otherwise).  Write out an expression  for a linear model to predict \verb=balance= using \verb=income= and \verb=student=, using this coding of the dummy variables. Interpret the coefficients in this linear model. 
+\item Using the coding in (a), write out an expression for a linear model to predict \verb=balance= using \verb=income=, \verb=student=, and an interaction between \verb=income= and \verb=student=. Interpret the coefficients in this model. 
+\item Using the coding in (b), write out an expression for a linear model to predict \verb=balance= using \verb=income=, \verb=student=, and an interaction between \verb=income= and \verb=student=. Interpret the coefficients in this model. 
+\item Using simulated data for \verb=balance=, \verb=income=, and \verb=student=, show that the fitted values (predictions) from the models in (a)--(d) do not depend on the coding of the dummy variables (i.e. the models in (a) and (b) yield the same fitted values, as do the models in (c) and (d)). 
+\end{enumerate}
+
+
+ \item  This problem has to do with logistic regression. 
+ \begin{enumerate}
+ \item Suppose you fit a logistic regression to some data and find that for a given observation $x=(x_1,\ldots,x_p)^T$, the estimated log-odds equals $0.23$. What is $P(Y=1 \mid X=x)$? 
+ \item In the same setting as (a), suppose you are now interested in the observation $x^* = (x_1+0.5, x_2-5, x_3, x_4, \ldots, x_p)^T$. In other words, $x^*_1=x_1+0.5$, $x^*_2=x_2-5$, and $x^*_j=x_j$ for $j \geq 3$. Write out a simple expression for $P(Y=1 \mid X=x^*)$.  Your answer will involve the estimated coefficients in the logistic regression model, as well as the number $0.23$. 
+
+\end{enumerate}
+ 
+\end{enumerate}
+
+
+
+
+\end{document}
+

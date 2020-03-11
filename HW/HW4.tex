@@ -1,0 +1,192 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt]{article}
+%\usepackage{epsfig,harvard,psfrag}
+%\documentclass[letterpaper, 12pt]{article}
+\usepackage{rotating,amsmath, amssymb, amsthm, multirow}
+\usepackage{amsfonts, verbatim}
+\usepackage{epsfig, psfrag, harvard}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[left=3.23cm,top=2.5cm,right=3.23cm,bottom=2.6cm]{geometry}
+\citationmode{abbr}
+\pagestyle{plain}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\usepackage{amsmath,amssymb}
+
+
+%\citationmode{abbr}
+\def\half{\frac{1}{2}}
+\def\sign {{\rm sign}}
+\def\Poisson {{\rm Poisson}}
+\def\max {{\rm max}}
+\def\trace {{\rm trace}}
+\def\rank {{\rm rank}}
+\def\minimize {{\rm minimize}}
+\def\MR {{\rm MR}}
+\def\det {{\rm det}}
+\def\FDR {{\rm FDR}}
+\def \s.t. {{\rm \;subject \;to \;}}
+\newcommand{\bh}{\widehat}
+\def\var {{\rm var}}  
+\def\bfx {{\bf x}}                                                                   
+\def\bfd {{\bf d}} 
+\def\bfc {{\bf c}}                                                                   
+\def\bfb {{\bf b}}                                                                   
+\def\zero {{\bf 0}}                                                                  
+\def\bfP {{\bf P}}                                                                   
+\def\bfU {{\bf U}}                                                                   
+\def\bfV {{\bf V}}                                                                   
+\def\bfLambda {{\bf \Lambda}}                                                        
+\def\bft {{\bf t}}                                                                   
+\def\bfbeta {{\boldsymbol\beta}}                                                     
+\def\bfeta {{\boldsymbol\eta}}                                                       
+\def\bfalpha {{\boldsymbol\alpha}}                                                   
+\def\bftheta {{\boldsymbol\theta}}                                                   
+\def\bfeps {{\boldsymbol\epsilon}}                                                   
+\def\bfa {{\bf a}}                                                                   
+\def\bfz {{\bf z}}                                                                   
+\def\bfu {{\bf u}}                                                                   
+\def\bfy {{\bf y}}                                                                   
+\def\bfY {{\bf Y}}                                                                   
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfE {{\bf E}}                                                                   
+\def\bfJ {{\bf J}}                                                                   
+\def\bfG {{\bf G}}                                                                   
+\def\bfF {{\bf F}}                                                                   
+\def\bfK {{\bf K}}                                                                   
+\def\E {{\rm E}}                                                                     
+\def\Var {{\rm Var}}                                                                 
+\def\Cov {{\rm Cov}}                                                                 
+\def\Cor {{\rm Cor}}                                                                 
+\def\bfX {{\bf X}}                                                                   
+\def\bfD {{\bf D}}                                                                   
+\def\bfM {{\bf M}}                                                                   
+\def\bfzero {{\bf 0}}                                                                
+\def\bfB{{\bf B}}                                                                    
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfSigma {{\bf \Sigma}}                                                          
+\def\bfC {{\bf C}}                                                                   
+\def\bfT {{\bf T}} 
+\def\bfV {{\bf V}}                                                                   
+\def\bfI {{\bf I}}                                                                   
+\def\bfA {{\bf A}}      
+
+
+\begin{document}
+
+
+\noindent{\bf BIOST 546}\\
+{\bf WINTER QUARTER 2020}\\
+
+
+\vspace{5mm}
+
+\begin{center}
+{\bf Homework \# 4}\\
+{\bf Due Via Online Submission to Canvas: Fri, March 6 at 12 PM (Noon) }
+\end{center}
+\vspace{10mm}
+
+\noindent \emph{Instructions:}\\
+
+ You may discuss the homework problems in small groups, but you must write up the final solutions and code yourself. 
+Please turn in your code for the problems that involve coding.  However, code without written answers will receive no credit. To receive credit, you must explain your answers and show your work. All plots should be appropriately labeled and legible, with axis labels, legends, etc., as needed. \\
+
+\emph{Please remember --- the easier you make it for the TA to find your answer, the easier it will be for him to give you credit for the problem!} \\
+
+{\bf  On this assignment, some of the problems involve random number generation. Be sure to set a random seed (using the command \verb=set.seed()=) before you begin.}
+
+\vspace{10mm}
+
+\begin{enumerate}
+
+
+%\item problem on lasso/ridge
+
+\item In this exercise, you will generate simulated data, and will use this data to perform the lasso. Make sure you set a random seed before you begin. % and ridge regression.
+\begin{enumerate}
+\item Use the \verb=rnorm()= function to generate a predictor $X$ of length $n=30$, and a noise vector $\epsilon$ of length $n=30$.
+\item Generate a response vector $Y$ of length $n=30$ according to the model
+$$Y = 3 - 2X + 3*X^2  + \epsilon.$$
+%\item 
+\item Fit a lasso model to the data, using  $X,X^2,\ldots,X^{7}$ in order to predict $Y$. 
+\begin{enumerate}
+\item Make a plot that displays the value of each coefficient, as a function of $\lambda$. You can display  $\lambda$ on the $x$-axis and ``Coefficient Value" on the $y$-axis. Your plot should look something like the right-hand-side of Figure 6.13 of the textbook, but with $\lambda$ on the $x$-axis. Make sure that you display each coefficient in a different color, and use a caption or legend that clearly indicates which coefficient is which. 
+\item  Use cross-validation to select the tuning parameter. What tuning parameter value do you choose? Make a plot  to justify your choice. Your plot could display ``Estimated Test Error" on the $y$-axis and $\lambda$ on the x-axis (or it could display other quantities of your choice). 
+\item Fit a lasso model to all $n$ observations, using the tuning parameter value selected in the previous sub-problem. Write out the fitted model. Comment on the fitted model.
+\end{enumerate}
+\item Now generate 1000 new observations generated according to 1(a) and 1(b). Apply the final fitted model from 1c(iii) to these new observations. What is the mean squared error?
+\end{enumerate}
+
+%\end{enumerate}
+
+%\begin{enumerate}
+\item In this exercise, you will  apply ridge regression to the data that you generated in 1(a), 1(b), and 1(d). (Make sure you use the same random seed!) 
+\begin{enumerate}
+\item Fit a ridge regression model to the data from 1(a) and 1(b), using  $X,X^2,\ldots,X^{7}$ in order to predict $Y$. 
+\begin{enumerate}
+\item Make a plot that displays the value of each coefficient, as a function of $\lambda$. You can display  $\lambda$ on the $x$-axis and ``Coefficient Value" on the $y$-axis. Your plot should look something like the right-hand-side of Figure 6.12 of the textbook. Make sure that you display each coefficient in a different color, and use a caption or legend that clearly indicates which coefficient is which. 
+
+\item  Use cross-validation to select the tuning parameter. What tuning parameter value do you choose? Make a plot  to justify your choice. Your plot could display ``Estimated Test Error" on the $y$-axis and $\lambda$ on the x-axis (or it could display other quantities of your choice). 
+\item Fit a ridge regression model to all $n$ observations, using the tuning parameter value selected in the previous sub-problem. Write out the fitted model. Comment on the fitted model.
+\end{enumerate}
+\item  Apply the final fitted model from 2a(iii) to the observations generated in 1(d). What is your mean squared error?
+\item Now fit a least squares model to the data generated in 1(a) and 1(b), using  $X,X^2,\ldots,X^{7}$ in order to predict $Y$. 
+ Then apply this fitted model to the 1000 new observations generated in 1(d). What mean squared error do you get?
+\item Given your answers to 1(d) and 2(b) and 2(c), which is a better choice on this data --- ridge regression or the lasso or least squares?
+\end{enumerate}
+
+
+
+
+\item In this problem, we will simulate some data, and we'll compare the results that we get using least squares linear regression, and using a regression tree. Let $n=100$ and $p=2$.
+ \begin{enumerate}
+ \item Generate $n=100$ observations according to the linear model, $$Y=1 + 2 X_1 + 3 X_2 + \epsilon.$$ 
+ You can generate $X_1$, $X_2$, and $\epsilon$ independently from a $N(0,1)$ distribution.
+ \item Make a plot of the data. One axis of your plot should represent $X_1$, one axis should represent $X_2$, and the color of each point should represent the value of $Y$. 
+ You can use a command like this one:\\
+   \verb+plot(x1, x2, col=rainbow(200)[rank(y)], pch=15)+.
+ \item Do you expect least squares linear regression or a regression tree to perform better on this data, in terms of test error? Explain your answer.
+ \item Fit a least squares linear model to the data, and fit a regression tree to the data. (Be sure to prune your tree, if appropriate!) Report the fitted model for the former, and display the tree for the latter. You should of course make sure that the nodes in your regression tree are labeled appropriately.
+ \item Repeat the plot from (b), but this time display the partitions of feature space corresponding to the tree from (d). Furthermore, label each region with the predicted response value in this region. Your plot should look like Figure 8.2 in the textbook, except for two changes:
+ \begin{itemize}
+ \item the \emph{predicted response value} in each region should also be displayed. 
+ \item the color of each observation should reflect the corresponding response value, as mentioned in (b).
+ \end{itemize}
+ \item Generate 1000 test observations, and  report the test error for both of the models that you fit in (d).  Comment on your results.
+ \end{enumerate}
+ 
+
+ \item Repeat the previous problem, but this time generate data as follows:
+ $$Y = 2 + 3 I_{\left(X_1 < 0 \right)} + 0.5 I_{\left( X_1 \geq 0, X_2<0.5 \right)} - 2 I_{\left( X_1 \geq 0,  X_2 \geq 0.5 \right)} + \epsilon.$$
+Here,  $I_{(A)}$ is an indicator variable that equals 1 if the event $A$ holds, and equals 0 otherwise.
+
+
+
+\item {\bf EXTRA CREDIT.} Let's consider doing least squares and ridge regression under a very simple setting, in which $p=1$, and $\sum_{i=1}^n y_i = \sum_{i=1}^n x_i = 0$. We consider regression without an intercept. 
+(It's usually a bad idea to do regression without an intercept, but if our feature and response each have mean zero, then it is okay to do this!)
+
+\begin{enumerate}
+\item The least squares solution is the value of $\beta \in \mathbb{R}$ that minimizes
+$$\sum_{i=1}^n (y_i - \beta x_i)^2.$$ Write out an analytical (closed-form) expression for this least squares solution. Your answer should be a function of $x_1,\ldots,x_n$ and $y_1,\ldots,y_n$.\\
+\emph{Hint: Calculus!!}
+\item For a given value of $\lambda$, the ridge regression solution minimizes $$\sum_{i=1}^n (y_i - \beta x_i)^2 + \lambda \beta^2.$$ Write out an analytical (closed-form) expression for the ridge regression solution, in terms of $x_1,\ldots,x_n$ and $y_1,\ldots,y_n$ and $\lambda$.
+\item Suppose that the true data-generating model is $$Y = 3 X + \epsilon,$$ where $\epsilon$ has mean zero, and $X$ is fixed (non-random). What is the expectation of the least squares estimator from (a)? Is it biased or unbiased?  
+\item Suppose again that the true data-generating model is $Y = 3 X + \epsilon$, where $\epsilon$ has mean zero, and $X$ is fixed (non-random). What is the expectation of the ridge regression estimator from (b)? Is it biased or unbiased? Explain how the bias changes as a function of $\lambda$. 
+\item Suppose that the true data-generating model is $Y = 3 X + \epsilon$, where $\epsilon$ has mean zero and variance $\sigma^2$, and $X$ is fixed (non-random), and also Cov($\epsilon_i, \epsilon_{i'}$)$=0$ for all $i \neq i'$. What is the variance of the least squares estimator from (a)? 
+\item Suppose that the true data-generating model is $Y = 3 X + \epsilon$, where $\epsilon$ has mean zero and variance $\sigma^2$, and $X$ is fixed (non-random), and also Cov($\epsilon_i, \epsilon_{i'}$)$=0$ for all $i \neq i'$. What is the variance of the ridge estimator from (b)? How does the variance change  as a function of $\lambda$? 
+\item In light of your answers to parts (d) and (f), argue that $\lambda$ in ridge regression allows us to control model complexity by trading off bias for variance.
+\end{enumerate}
+\emph{Hint: For this problem, you might want to brush up on some basic properties of means and variances! For instance, if $Cov(Z,W)=0$, then $Var(Z+W)=Var(Z)+Var(W)$. And if $a$ is a constant, then $Var(aW) = a^2 Var(W)$, and $Var(a+W)=Var(W)$.}
+
+
+
+
+ 
+\end{enumerate}
+
+\end{document}
+

@@ -1,0 +1,236 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt]{article}
+%\usepackage{epsfig,harvard,psfrag}
+%\documentclass[letterpaper, 12pt]{article}
+\usepackage{rotating,amsmath, amssymb, amsthm, multirow}
+\usepackage{amsfonts, verbatim}
+\usepackage{epsfig, psfrag, harvard}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[left=3.23cm,top=2.5cm,right=3.23cm,bottom=2.6cm]{geometry}
+\citationmode{abbr}
+\pagestyle{plain}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\usepackage{amsmath,amssymb}
+
+
+%\citationmode{abbr}
+\def\half{\frac{1}{2}}
+\def\sign {{\rm sign}}
+\def\Poisson {{\rm Poisson}}
+\def\max {{\rm max}}
+\def\trace {{\rm trace}}
+\def\rank {{\rm rank}}
+\def\minimize {{\rm minimize}}
+\def\MR {{\rm MR}}
+\def\det {{\rm det}}
+\def\FDR {{\rm FDR}}
+\def \s.t. {{\rm \;subject \;to \;}}
+\newcommand{\bh}{\widehat}
+\def\var {{\rm var}}  
+\def\bfx {{\bf x}}                                                                   
+\def\bfd {{\bf d}} 
+\def\bfc {{\bf c}}                                                                   
+\def\bfb {{\bf b}}                                                                   
+\def\zero {{\bf 0}}                                                                  
+\def\bfP {{\bf P}}                                                                   
+\def\bfU {{\bf U}}                                                                   
+\def\bfV {{\bf V}}                                                                   
+\def\bfLambda {{\bf \Lambda}}                                                        
+\def\bft {{\bf t}}                                                                   
+\def\bfbeta {{\boldsymbol\beta}}                                                     
+\def\bfeta {{\boldsymbol\eta}}                                                       
+\def\bfalpha {{\boldsymbol\alpha}}                                                   
+\def\bftheta {{\boldsymbol\theta}}                                                   
+\def\bfeps {{\boldsymbol\epsilon}}                                                   
+\def\bfa {{\bf a}}                                                                   
+\def\bfz {{\bf z}}                                                                   
+\def\bfu {{\bf u}}                                                                   
+\def\bfy {{\bf y}}                                                                   
+\def\bfY {{\bf Y}}                                                                   
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfE {{\bf E}}                                                                   
+\def\bfJ {{\bf J}}                                                                   
+\def\bfG {{\bf G}}                                                                   
+\def\bfF {{\bf F}}                                                                   
+\def\bfK {{\bf K}}                                                                   
+\def\E {{\rm E}}                                                                     
+\def\Var {{\rm Var}}                                                                 
+\def\Cov {{\rm Cov}}                                                                 
+\def\Cor {{\rm Cor}}                                                                 
+\def\bfX {{\bf X}}                                                                   
+\def\bfD {{\bf D}}                                                                   
+\def\bfM {{\bf M}}                                                                   
+\def\bfzero {{\bf 0}}                                                                
+\def\bfB{{\bf B}}                                                                    
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfSigma {{\bf \Sigma}}                                                          
+\def\bfC {{\bf C}}                                                                   
+\def\bfT {{\bf T}} 
+\def\bfV {{\bf V}}                                                                   
+\def\bfI {{\bf I}}                                                                   
+\def\bfA {{\bf A}}      
+
+
+\begin{document}
+
+
+\noindent{\bf BIOST 546}\\
+{\bf WINTER QUARTER 2020}\\
+
+
+\vspace{5mm}
+
+\begin{center}
+{\bf Homework \# 1}\\
+{\bf Due Via Online Submission to Canvas: Tues, Jan 28 at 12 PM (Noon) }
+\end{center}
+\vspace{10mm}
+
+\noindent \emph{Instructions:}\\
+
+ You may discuss the homework problems in small groups, but you must write up the final solutions and code yourself. 
+Please turn in your code for the problems that involve coding.  However, code without written answers will receive no credit. To receive credit, you must explain your answers and show your work. All plots should be appropriately labeled and legible, with axis labels, legends, etc., as needed. \\
+
+\emph{Please make sure that all answers are supplied in the order in which they are requested.} Do not expect your TA to flip between a bunch of  pages in order to find different parts of your answer!  
+If the TA cannot find the different parts of your answer, then he may not be able to give you credit for the work you have done. You may find that using \verb=Rmarkdown= (available through \verb=RStudio=) to prepare your homework will allow you to easily create a single file that contains text, figures, and code that appear in the appropriate places. 
+
+\vspace{10mm}
+
+\begin{enumerate}
+
+
+\item  For this problem, you will come up with some examples of statistical learning  for biomedical  or public health applications. \begin{enumerate}
+\item Provide three examples of regression problems motivated by biomedical research or public health.   In each example, describe $Y$ and $X_1,\ldots,X_p$ as well as the scientific task.
+\item Provide three examples of classification problems motivated by biomedical research or public health.   In each example, describe $Y$ and $X_1,\ldots,X_p$ as well as the scientific task.
+\item Provide three examples of unsupervised learning motivated by biomedical research or public health.   In each example, describe  $X_1,\ldots,X_p$ as well as the scientific task.
+\item Provide three examples in biomedical research or public health for which \emph{inference}  (as opposed to prediction) is the goal. In each example, describe $Y$ and  $X_1,\ldots,X_p$ as well as the scientific task.
+\item Provide three examples in biomedical research or public health for which \emph{prediction}  (as opposed to inference) is the goal. In each example, describe $Y$ and  $X_1,\ldots,X_p$ as well as the scientific task.
+\end{enumerate}
+
+\item Consider $K$-nearest neighbors for classification on a data set with $n=800$ observations. There are two classes, the ``blue" class and the ``orange" class. 
+ Of the $n=800$ observations, $n_1=350$ belong to the orange class and $n_2=450$ belong to the blue class. 
+ \begin{enumerate}
+ \item Suppose we perform $K$-nearest neighbors with $K=1$. What will the training error rate be? Explain your answer. 
+  \item Suppose we perform $K$-nearest neighbors with $K=1000$. What will the training error rate be? Explain your answer. 
+  \item What value of $K$ do we expect will result in the lowest bias? lowest variance? highest bias? highest variance? Explain your answers. 
+  \item Now suppose we apply the $K$-nearest neighbors model, with $K=1000$, to the training set, and we use the fitted model to classify a test observation. Will we classify this test observation to the blue class or to the orange class, or is it impossible to know without more information? Explain your answer. 
+ \end{enumerate}
+ 
+ \item In this exercise, you will analyze a classification data set of your choice (it must have $p \geq 2$). You can find the data online, through your research, on the book website, etc. Please use real data, not simulated data.
+ \begin{enumerate}
+ \item Describe the data. What are the values of $n$ and $p$? How many classes are there, and what do they mean? What do the features mean? Where did you find the data? 
+ \item Now, select $2$ features for your analysis (since computer screens \& paper are two-dimensional). You can choose those features at random from the full set of $p$ features, or you can choose them based on your prior scientific knowledge.  However, please do not choose them by performing a preliminary analysis of your data. Make a plot with the two features on the horizontal and vertical axes, and with all $n$ observations displayed. The color of each observation should correspond to its class label. Make sure to include axis labels, an informative legend, etc.
+ \item Now perform $K$-nearest neighbors with a range of values of $K$, from $1$ to $n/2$. For each value of $K$, recreate the plot from (b), but this time also color the background of the plot according to the class to which a test observation with that particular value of the features would be assigned. Basically, you are re-creating the right-hand side of Figure 2.14 of the textbook, but for the data that you have chosen (and you do not need to plot the black boundary, which can be a little finicky to display). 
+ \item For each value of $K$ in (c), what was the  training error? 
+ \item Based on the plots you created in (c), which value of $K$ do you think will give the smallest expected test error?  Explain your answer. 
+ \end{enumerate}
+%\end{enumerate}
+ 
+ 
+\item  Consider the regression model $Y=f(X)+\epsilon$ where $\epsilon$ is mean-zero noise term.  Suppose we use some training data to fit this model using a variety of techniques, each of which results in a fitted model (which we will call $\hat{f}(x)$) and makes use of a different amount of ``flexibility". 
+\begin{enumerate} 
+\item Make a plot with ``flexibility" on the $x$-axis that displays the following curves:
+\begin{itemize}
+\item the irreducible error
+\item the variance of $\hat{f}(x)$
+\item the squared bias of $\hat{f}(x)$
+\item $E(y_0 - \hat{f}(x_0))^2$, where $(x_0, y_0)$ is a test observation
+\end{itemize}
+You can make this plot in \verb=R= or you can just sketch it by hand (and include a photo of the sketch in your assignment).
+ \item Comment on the plot, and explain how this ties into the bias-variance trade-off that we covered in class.
+\end{enumerate}
+
+
+\item Suppose that you are interested in performing regression on a particular dataset, and need to decide whether to take a parametric or a non-parametric approach. Describe what properties of the dataset or the scientific context you might use to make this decision. What properties would lead you to \emph{definitely} use a parametric approach? What properties would lead you to \emph{definitely} use a non-parametric approach? 
+
+\item This problem has to do with linear regression. 
+\begin{enumerate}
+\item For a simple linear regression, 
+show that the least squares coefficient estimates take the form shown in (3.4) of the textbook. In other words, prove that the coefficients that minimize (3.3) satisfy the equation in (3.4). \emph{(Hint: Use calculus!)}
+\item  Now, write your own function in \verb=R= to calculate $\hat\beta_0$ and $\hat\beta_1$ from (3.4) in the textbook. 
+\item On some examples, show that the function that you wrote gives the same result as the \verb=lm()= function in \verb=R=.
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+
+\end{document}
+
+\item In this problem, we will make use of the \verb=Auto= data set, which is part of the \verb=ISLR= package. 
+\begin{enumerate}
+\item Fit a least squares linear model to the data, in order to predict \verb=mpg= using all of the other predictors except for \verb=name=. Present your results in the form of a table. Be sure to indicate clearly how any qualitative variables should be interpreted. For each predictor, comment on whether 
+you can reject the null hypothesis that there is no linear association between that predictor and gas mileage, conditional on the other predictors in the model. 
+\item What is the (training set) mean squared error of this model? 
+\item  What gas mileage do you predict for a Japanese car with three cylinders, displacement 100, horsepower of 85, weight of 3000, acceleration of 20, built in the year 1980? 
+\item Report the 95\% prediction interval for the prediction from (c), and provide a sentence explaining the meaning of this prediction interval. 
+\item On average, holding all other covariates fixed, what is the difference between the  \verb=mpg= of a Japanese car and the  \verb=mpg= of an  American car? 
+\item On average, holding all other covariates fixed, what is the change in \verb=mpg= associated with a 10-unit change in horsepower?
+\end{enumerate}
+
+
+\item Consider using only the \verb=origin= variable to predict \verb=mpg= on the \verb=Auto= data set.
+In this problem, we will explore the coding of this qualitative variable.
+\begin{enumerate}
+\item First, code the \verb=origin= variable using two dummy (indicator) variables, with \verb=Japanese= as the default value. Write out an equation like (3.30) in the textbook, and report the coefficient estimates. What is the predicted \verb=mpg= for a Japanese car? for an American car? for a European car? 
+\item Now, code the \verb=origin= variable using two dummy (indicator) variables, with \verb=American= as the default. Write out an equation like (3.30) in the textbook, and report the coefficient estimates. What is the predicted \verb=mpg= for a Japanese car? for an American car? for a European car? 
+\item Now, code the \verb=origin= variable using two variables that take on values of $+1$ or $-1$, as in the top of page 85 of the textbook.  Write out an equation like (3.30) in the textbook, and report the coefficient estimates. What is the predicted \verb=mpg= for a Japanese car? for an American car? for a European car? 
+\item Finally, code the \verb=origin= variable using a single variable that takes on values of $0$ for Japanese, $1$ for American, and $2$ for European. Write out an equation like (3.30) in the textbook, and report the coefficient estimates. What is the predicted \verb=mpg= for a Japanese car? for an American car? for a European car? 
+\item Comment on your results in (a)-(d).
+\end{enumerate}
+
+
+\item  Fit a model to predict \verb=mpg= on the \verb=Auto= dataset using \verb=origin= and \verb=horsepower=, as well as an interaction between \verb=origin= and \verb=horsepower=.
+Present your results, and write out an equation like (3.35) in the textbook. 
+On average, how much does the \verb=mpg=  of a Japanese car change with a one-unit increase in horsepower? How about the  \verb=mpg= of an American car?  a European car?
+
+\item This problem has to do with the bias-variance trade-off and related ideas. For (a) and (b), it's okay to submit hand-sketched plots: you are not supposed to actually compute the quantities referred to below on data; instead, this is a thought exercise. 
+\begin{enumerate}
+\item Make a plot, like the one we saw in class, with ``flexibility" on the $x$-axis. Sketch the following curves: squared bias, variance, irreducible error, reducible error, expected prediction error. Be sure to label each curve. Indicate which level of flexibility is ``best". 
+\item Make a plot with ``flexibility" on the $x$-axis. Sketch curves corresponding to the training error and the test error. Be sure to label each curve. Indicate which level of flexibility is ``best".  
+\item In words, describe the \emph{most flexible} and \emph{least flexible} regression methods you can think of. Justify your answer.
+\item Repeat (c), but for classification. 
+\end{enumerate} 
+
+
+\item In this exercise, you will simulate some data with a qualitative response $Y$, and will perform $K$-nearest neighbors. Take $p=2$ and $n=100$, and assume that $Y$ takes on two values, ``red" or ``blue".
+\begin{enumerate}
+\item First, generate data with a \emph{very highly non-linear decision boundary}.  Given $X=x$, the value of $Y$ should \emph{not} be deterministic: i.e. 
+ some observations should fall on the wrong side of the Bayes decision boundary, as is the case in Figure 2.15 of the textbook. 
+Provide a description and an equation for how you generated the data. \emph{Note: spend some time thinking about how you are generating this data. It will be hard to get sensible results for the rest of this problem if you do not generate data in a sensible way. You can use Figure 2.15 of the textbook for inspiration.}
+\item Plot the data. Be sure to color each observation according to its response value. \item  Now, plot the Bayes decision boundary for these data. Display the $n$ observations on the plot. \emph{(Note: because you generated the data, you can actually calculate the Bayes decision boundary.) } (Figures 2.14--2.16 of the textbook can provide some inspiration for this figure.) 
+\item Now, perform $K$-nearest neighbors for a range of values of $K$, from $1$ to $50$.   Make a plot  that has $1/K$ on the $x$-axis, and  training error  (i.e. number of mis-classified training set observations) on the $y$-axis.  (Figure 2.17 in the textbook can provide some inspiration for this figure.)
+\item For $K=1$, $5$, and $25$, plot the estimated Bayes decision boundary (i.e. the $K$-nearest neighbors decision boundary). Display the $n$ observations on the plot. (Figures 2.14--2.16 of the textbook can provide some inspiration for this figure.) 
+\item Which value of $K$ do you think is the best choice on this dataset? Explain your answer.
+\item Repeat (a)-(f), but this time generate data with a \emph{linear decision boundary}. 
+\end{enumerate}
+
+\item Consider using least squares linear regression to predict weight ($Y$) using height.
+\begin{enumerate}
+\item Suppose that you measure height in inches ($X_1$),  fit the model 
+$$Y = \beta_0 + \beta_1 X_1 + \epsilon,$$
+and obtain the coefficient estimates $\hat\beta_0=-165.1$ and $\hat\beta_1=4.8$. What weight will you predict for an individual who is 64 inches tall? 
+\item Now suppose that you want to measure height in feet  ($X_2)$ instead of inches. (There are 12 inches to a foot.) You fit the model
+$$Y = \beta_0^* + \beta_1^* X_2 + \epsilon.$$
+What are the coefficient estimates? What weight will you predict for an individual who is 64 inches tall (i.e. $5.333$ feet)? 
+\item Now suppose you fit the model 
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon,$$
+which contains both height in inches and height in feet as predictors. Provide a general expression 
+for the least squares coefficient estimates for this model.
+\item How do the (training set) mean squared errors compare for three models fit in (a)--(c)?
+\end{enumerate}
+
+
+ 
+\end{enumerate}
+
+
+
+
+\end{document}
+

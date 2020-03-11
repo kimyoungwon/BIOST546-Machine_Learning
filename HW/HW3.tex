@@ -1,0 +1,208 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt]{article}
+%\usepackage{epsfig,harvard,psfrag}
+%\documentclass[letterpaper, 12pt]{article}
+\usepackage{rotating,amsmath, amssymb, amsthm, multirow}
+\usepackage{amsfonts, verbatim}
+\usepackage{epsfig, psfrag, harvard}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[left=3.23cm,top=2.5cm,right=3.23cm,bottom=2.6cm]{geometry}
+\citationmode{abbr}
+\pagestyle{plain}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\usepackage{amsmath,amssymb}
+
+
+%\citationmode{abbr}
+\def\half{\frac{1}{2}}
+\def\sign {{\rm sign}}
+\def\Poisson {{\rm Poisson}}
+\def\max {{\rm max}}
+\def\trace {{\rm trace}}
+\def\rank {{\rm rank}}
+\def\minimize {{\rm minimize}}
+\def\MR {{\rm MR}}
+\def\det {{\rm det}}
+\def\FDR {{\rm FDR}}
+\def \s.t. {{\rm \;subject \;to \;}}
+\newcommand{\bh}{\widehat}
+\def\var {{\rm var}}  
+\def\bfx {{\bf x}}                                                                   
+\def\bfd {{\bf d}} 
+\def\bfc {{\bf c}}                                                                   
+\def\bfb {{\bf b}}                                                                   
+\def\zero {{\bf 0}}                                                                  
+\def\bfP {{\bf P}}                                                                   
+\def\bfU {{\bf U}}                                                                   
+\def\bfV {{\bf V}}                                                                   
+\def\bfLambda {{\bf \Lambda}}                                                        
+\def\bft {{\bf t}}                                                                   
+\def\bfbeta {{\boldsymbol\beta}}                                                     
+\def\bfeta {{\boldsymbol\eta}}                                                       
+\def\bfalpha {{\boldsymbol\alpha}}                                                   
+\def\bftheta {{\boldsymbol\theta}}                                                   
+\def\bfeps {{\boldsymbol\epsilon}}                                                   
+\def\bfa {{\bf a}}                                                                   
+\def\bfz {{\bf z}}                                                                   
+\def\bfu {{\bf u}}                                                                   
+\def\bfy {{\bf y}}                                                                   
+\def\bfY {{\bf Y}}                                                                   
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfE {{\bf E}}                                                                   
+\def\bfJ {{\bf J}}                                                                   
+\def\bfG {{\bf G}}                                                                   
+\def\bfF {{\bf F}}                                                                   
+\def\bfK {{\bf K}}                                                                   
+\def\E {{\rm E}}                                                                     
+\def\Var {{\rm Var}}                                                                 
+\def\Cov {{\rm Cov}}                                                                 
+\def\Cor {{\rm Cor}}                                                                 
+\def\bfX {{\bf X}}                                                                   
+\def\bfD {{\bf D}}                                                                   
+\def\bfM {{\bf M}}                                                                   
+\def\bfzero {{\bf 0}}                                                                
+\def\bfB{{\bf B}}                                                                    
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfSigma {{\bf \Sigma}}                                                          
+\def\bfC {{\bf C}}                                                                   
+\def\bfT {{\bf T}} 
+\def\bfV {{\bf V}}                                                                   
+\def\bfI {{\bf I}}                                                                   
+\def\bfA {{\bf A}}      
+
+
+\begin{document}
+
+
+\noindent{\bf BIOST 546}\\
+{\bf WINTER QUARTER 2020}\\
+
+
+\vspace{5mm}
+
+\begin{center}
+{\bf Homework \# 3}\\
+{\bf Due Via Online Submission to Canvas: Tues, Feb 25 at 12 PM (Noon) }
+\end{center}
+\vspace{10mm}
+
+\noindent \emph{Instructions:}\\
+
+ You may discuss the homework problems in small groups, but you must write up the final solutions and code yourself. 
+Please turn in your code for the problems that involve coding.  However, code without written answers will receive no credit. To receive credit, you must explain your answers and show your work. All plots should be appropriately labeled and legible, with axis labels, legends, etc., as needed. \\
+
+\emph{Please remember --- the easier you make it for the TA to find your answer, the easier it will be for him to give you credit for the problem!} \\
+
+{\bf  On this assignment, some of the problems involve random number generation. Be sure to set a random seed (using the command \verb=set.seed()=) before you begin.}
+
+\vspace{10mm}
+
+\begin{enumerate}
+
+
+\item  For this problem, you will use the \verb=iris= data, which the TA used in the solution key for Q3 of HW1.  You will apply $K$-nearest neighbors to classify the observations. 
+
+\begin{enumerate}
+\item Make a plot showing a range of values of $K$ in $K$-nearest neighbors, ranging from $K=1$ to $K=n/2$, on the $x$-axis. On this plot, display five curves:
+\begin{enumerate}
+\item The training error rate
+\item The test error rate estimated using the validation set approach
+\item The test error rate estimated using leave-one-out cross-validation
+\item The test error rate estimated using $5$-fold cross-validation
+\item The test error rate estimated using $10$-fold cross-validation
+\end{enumerate}
+Be sure to label each curve, as well as the figure axes.
+
+{\bf For this problem, please implement cross-validation yourself --- i.e. do not use an \verb=R= function that performs cross-validation for you.} 
+
+\item Comment on the plot obtained in (a). Which value of $K$ results in the lowest estimated test error?
+\end{enumerate}
+  
+
+
+\item On Q4 of HW2, you fit a bunch of models to the \verb=Auto= dataset from the \verb=ISLR= library. 
+
+Now, use cross-validation to estimate the test errors for several linear models on this dataset (this can be the same set of models you considered on HW2, or a different set of models if you prefer).  Also, compute the training error for each model. 
+
+
+Make a table listing the models that you considered, as well as the training error and estimated test error for each model. Which of the models that you considered had the lowest estimated test error? 
+
+For this problem, you can implement cross-validation yourself, or you can use an \verb=R= function that performs cross-validation for you. 
+
+
+\item   In this problem, we'll see a (very!!) simple simulated example where a least squares linear model is ``too flexible". 
+
+\begin{enumerate}
+
+\item First, generate some data with $n=100$ and $p=10,000$ features, and a quantitative response, using the following \verb=R= commands:
+
+\begin{verbatim}
+y <- rnorm(100)
+x <- matrix(rnorm(10000*100), ncol=10000)
+\end{verbatim}
+
+
+
+Write out an expression for the model corresponding to this data generation procedure.  For instance, it might look something like 
+$$Y = 2 X_1 + 3 X_2 + \epsilon, \;\;\;\;\; \epsilon \sim N(0,1).$$
+
+\item What is the value of the irreducible error?
+
+\item Consider a very simple model-fitting procedure that just predicts $0$ for every observation. That is, $\hat{f}(x)=0$ for all $x$.
+\begin{enumerate}
+\item What is the bias of this procedure?
+\item What is the variance of this procedure?
+\item What is the expected prediction error of this procedure?
+\item Use the validation set approach to estimate the test error of this procedure. What answer do you get?
+\item Comment on your answers to (iii) and (iv). Do your answers agree with each other? Explain. 
+\end{enumerate}
+
+ 
+\item Now use the validation set approach to estimate the test error  
+of a least squares linear model using $X_1,\ldots,X_{10,000}$ to predict $Y$.  What is the estimated test error? \\
+
+\noindent \emph{Hint:} If you fit a least squares linear model to predict $Y$ using $X_1,\ldots,X_p$ where $p \geq n$, then only  the first $n-1$ coefficients will be assigned values. The rest will show up as \verb=NA= because those coefficients aren't needed to obtain a perfect (i.e. zero) residual sum of squares on the training data. You can see all of the coefficient values by applying the \verb=coef()= command to the output of the linear model. 
+
+\item Comment on your answers to (c) and (d). Which of the two procedures has a smaller estimated test error?  higher bias? higher variance? In answering this question, be sure to think carefully about how the data were generated.
+
+\end{enumerate}
+
+
+
+\item In lecture on February 5, 2020, we discussed ``Option 1" and ``Option 2", within the context of ``pitfalls of cross-validation". If you missed that lecture, then please familiarize yourself with the lecture notes (posted on \verb=Canvas=) before you continue.
+
+Here, we are going to continue to work with the simulated data from the previous problem, in order to illustrate the problem with Option 1. 
+
+\begin{enumerate}
+
+\item Calculate the correlation between each feature and the response. Make a histogram of these correlations. What are the  values of the 10 largest absolute correlations? 
+
+\item Now try out Option 1 with $q=10$ (to keep things simple, you can use the ``validation set" version of Option 1, on page 1 of the 2/5/2020 lecture notes). What is the estimated test error?
+
+\item Now try out Option 2 with $q=10$ (to keep things simple, you can use the ``validation set" version of Option 2, on page 1 of the 2/5/2020 lecture notes). What is the estimated test error? 
+
+\item Comment on your results in (b) and (c). How does this relate to the discussion of Option 1 versus Option 2  from lecture on 2/5/2020? Explain how you can see that Option 1 gave you a useless (i.e. misleading, inaccurate, wrong) estimate of the test error. 
+\end{enumerate}
+
+
+\item In this problem, you will analyze a  (real, not simulated) dataset of your choice with a quantitative response $Y$, and $p \geq 50$ quantitative predictors. 
+\begin{enumerate}
+\item Describe the data. Where did you get it from? What is the meaning of the response, and what are the meanings of the predictors?
+\item  Fit a least squares linear model to the data, and provide an estimate of the test error. (Explain how you got this estimate.)
+\item Fit a ridge regression model to the data, with a range of values of the tuning parameter $\lambda$. Make a plot like the left-hand panel of Figure 6.4 in the textbook. 
+\item What value of $\lambda$ in the ridge regression model provides the smallest estimated test error? Report this estimate of test error. (Also, explain how you estimated test error.)
+\item Repeat (c), but for a lasso model.
+\item Repeat (d), but for a lasso model.  Which features are included in this lasso model?
+\end{enumerate}
+In this problem, you may use the function in the \verb=glmnet= package that performs cross-validation. 
+
+
+ 
+\end{enumerate}
+
+\end{document}
+

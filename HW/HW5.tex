@@ -1,0 +1,166 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt]{article}
+%\usepackage{epsfig,harvard,psfrag}
+%\documentclass[letterpaper, 12pt]{article}
+\usepackage{rotating,amsmath, amssymb, amsthm, multirow}
+\usepackage{amsfonts, verbatim}
+\usepackage{epsfig, psfrag, harvard}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[left=3.23cm,top=2.5cm,right=3.23cm,bottom=2.6cm]{geometry}
+\citationmode{abbr}
+\pagestyle{plain}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\usepackage{amsmath,amssymb}
+
+
+%\citationmode{abbr}
+\def\half{\frac{1}{2}}
+\def\sign {{\rm sign}}
+\def\Poisson {{\rm Poisson}}
+\def\max {{\rm max}}
+\def\trace {{\rm trace}}
+\def\rank {{\rm rank}}
+\def\minimize {{\rm minimize}}
+\def\MR {{\rm MR}}
+\def\det {{\rm det}}
+\def\FDR {{\rm FDR}}
+\def \s.t. {{\rm \;subject \;to \;}}
+\newcommand{\bh}{\widehat}
+\def\var {{\rm var}}  
+\def\bfx {{\bf x}}                                                                   
+\def\bfd {{\bf d}} 
+\def\bfc {{\bf c}}                                                                   
+\def\bfb {{\bf b}}                                                                   
+\def\zero {{\bf 0}}                                                                  
+\def\bfP {{\bf P}}                                                                   
+\def\bfU {{\bf U}}                                                                   
+\def\bfV {{\bf V}}                                                                   
+\def\bfLambda {{\bf \Lambda}}                                                        
+\def\bft {{\bf t}}                                                                   
+\def\bfbeta {{\boldsymbol\beta}}                                                     
+\def\bfeta {{\boldsymbol\eta}}                                                       
+\def\bfalpha {{\boldsymbol\alpha}}                                                   
+\def\bftheta {{\boldsymbol\theta}}                                                   
+\def\bfeps {{\boldsymbol\epsilon}}                                                   
+\def\bfa {{\bf a}}                                                                   
+\def\bfz {{\bf z}}                                                                   
+\def\bfu {{\bf u}}                                                                   
+\def\bfy {{\bf y}}                                                                   
+\def\bfY {{\bf Y}}                                                                   
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfE {{\bf E}}                                                                   
+\def\bfJ {{\bf J}}                                                                   
+\def\bfG {{\bf G}}                                                                   
+\def\bfF {{\bf F}}                                                                   
+\def\bfK {{\bf K}}                                                                   
+\def\E {{\rm E}}                                                                     
+\def\Var {{\rm Var}}                                                                 
+\def\Cov {{\rm Cov}}                                                                 
+\def\Cor {{\rm Cor}}                                                                 
+\def\bfX {{\bf X}}                                                                   
+\def\bfD {{\bf D}}                                                                   
+\def\bfM {{\bf M}}                                                                   
+\def\bfzero {{\bf 0}}                                                                
+\def\bfB{{\bf B}}                                                                    
+\def\bfZ {{\bf Z}}                                                                   
+\def\bfSigma {{\bf \Sigma}}                                                          
+\def\bfC {{\bf C}}                                                                   
+\def\bfT {{\bf T}} 
+\def\bfV {{\bf V}}                                                                   
+\def\bfI {{\bf I}}                                                                   
+\def\bfA {{\bf A}}      
+
+
+\begin{document}
+
+
+\noindent{\bf BIOST 546}\\
+{\bf WINTER QUARTER 2020}\\
+
+
+\vspace{5mm}
+
+\begin{center}
+{\bf Homework \# 5}\\
+{\bf Due Via Online Submission to Canvas: Tues, March 17 at 12 PM (Noon) }
+\end{center}
+\vspace{10mm}
+
+\noindent \emph{Instructions:}\\
+
+ You may discuss the homework problems in small groups, but you must write up the final solutions and code yourself. 
+Please turn in your code for the problems that involve coding.  However, code without written answers will receive no credit. To receive credit, you must explain your answers and show your work. All plots should be appropriately labeled and legible, with axis labels, legends, etc., as needed. \\
+
+\emph{Please remember --- the easier you make it for the TA to find your answer, the easier it will be for him to give you credit for the problem!} \\
+
+
+\vspace{10mm}
+
+\begin{enumerate}
+
+
+\item Suppose we produce ten bootstrapped samples from a data set
+containing red and green classes. We then fit a classification tree
+to each bootstrapped sample and, for a specific value of $X$, produce
+ten estimates of $P($Class is Red $ \mid X)$:
+
+$$0.01, 0.01, 0.05, 0.1, 0.51, 0.6, 0.6, 0.65, 0.66, 0.67.$$
+
+There are two commonly-used approaches to combine these results together into a
+single class prediction. One is the majority vote approach: namely, 
+ we assign to class red if more than half of the 
+ estimates of $P($Class is Red $ \mid X)$ exceed $0.5$, and we assign to class green
+ otherwise. The second approach is to classify based on the average
+probability. In this example, what is the final classification under each
+of these two approaches? 
+
+\item Find a data set of your choice that consists of a $n \times p$ matrix $X$ and a qualitative response $Y$ with $K$ classes. 
+If there are any qualitative variables, then you should either toss them, or else re-code using dummy variables. 
+Make sure that you have at least $10$ observations in each class, and at least 3 features. 
+\begin{enumerate}
+\item What are the values of $n$, $p$, $K$? Describe the data. (Where did you find it? what do the features represent? what do the response classes mean? etc.)
+\item Make a plot displaying the $n$ observations projected onto the first 2 principal components. Color the observations according to their class label (make sure to include a legend, to label axes, etc.). What proportion of variance is explained by the first two principal components?
+\item Now cluster the data matrix $X$ using $K$-means clustering (where here you set $K$ to be the true number of classes). Repeat the plot from (b), but this time color the observations according to the \emph{cluster labels}.
+\item Use the \verb=table()= function in \verb=R= to make a contingency table displaying the true class labels versus the cluster labels. Use the adjusted Rand Index (look it up online!) to quantify the extent to which the true class labels agree with the cluster labels. Comment on your results. 
+\end{enumerate}
+
+\item Simulate a two-class data set with $100$ training observations and $100$ test observations, and two features, in which there is a visible but non-linear separation between the two classes. Show that in this setting, a support vector machine with a polynomial kernel (with degree greater than 1) or a radial kernel will outperform a support vector classifier on the training data. Which technique performs best on the test data? Make plots and report training and test error rates in order to back up your assertions.
+ 
+ \item Here we explore the maximal margin classifier on a toy data set.
+\begin{enumerate}
+\item We are given $n=7$ observations in $p=2$ dimensions. For each observation, there is an associated class label.
+\begin{center}
+\begin{tabular}{c   c  c  c }
+\hline
+Obs. &  $X_1$ & $X_2$ & $Y$ \\
+  \hline
+1&  3& 4 & Red \\
+ 2& 2 & 2 & Red \\
+3  & 4& 4 & Red \\
+ 4 &1 & 4 & Red \\
+ 5 &2&1&Blue\\
+ 6 &4&3&Blue\\
+ 7 &4 & 1 & Blue\\
+ \hline
+\end{tabular}
+\end{center}
+Sketch the observations.
+
+\item Sketch the optimal separating hyperplane, and provide the equation for this hyperplane.
+\item Describe the classification rule for the maximal margin classifier. It should be something along the lines of ``Classify to Red if $\beta_0+\beta_1 X_1 + \beta_2 X_2 > 0$, and classify to Blue otherwise.'' Provide the values for $\beta_0$, $\beta_1$, and $\beta_2$.
+\item On your sketch, indicate the margin for the maximal margin hyperplane.
+\item Indicate the support vectors for the maximal margin classifier.
+\item Argue that a slight movement of the seventh observation would not affect the maximal margin hyperplane.
+\item Sketch a hyperplane that is \emph{not} the optimal separating hyperplane, and provide the equation for this hyperplane.
+\item Draw an additional observation on the plot so that the two classes are no longer separable by a hyperplane.
+\end{enumerate}
+
+ 
+\end{enumerate}
+
+\end{document}
+
